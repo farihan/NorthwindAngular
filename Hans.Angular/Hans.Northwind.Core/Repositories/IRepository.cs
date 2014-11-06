@@ -12,16 +12,16 @@ namespace Hans.Northwind.Core.Repositories
         void Save(TModel instance);
         void Update(TModel instance);
         void Delete(TModel instance);
-        void SaveAsync(TModel instance);
-        void UpdateAsync(TModel instance);
-        void DeleteAsync(TModel instance);
+        Task SaveAsync(TModel instance);
+        Task UpdateAsync(TModel instance);
+        Task DeleteAsync(TModel instance);
 
-        IList<TModel> FindAll();
-        IList<TModel> FindAllBy(Expression<Func<TModel, bool>> where);
+        IQueryable<TModel> FindAll();
+        IQueryable<TModel> FindAllBy(Expression<Func<TModel, bool>> where);
         TModel FindOneBy(Expression<Func<TModel, bool>> where);
 
-        Task<IList<TModel>> FindAllAsync();
-        Task<IList<TModel>> FindAllByAsync(Expression<Func<TModel, bool>> where);
+        Task<IQueryable<TModel>> FindAllAsync();
+        Task<IQueryable<TModel>> FindAllByAsync(Expression<Func<TModel, bool>> where);
         Task<TModel> FindOneByAsync(Expression<Func<TModel, bool>> where);
     }
 }

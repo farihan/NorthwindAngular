@@ -35,33 +35,33 @@ namespace Hans.Northwind.Core.Repositories
             Context.SaveChanges();
         }
 
-        public void SaveAsync(TModel instance)
+        public async Task SaveAsync(TModel instance)
         {
             Context.Set<TModel>().Add(instance);
-            Context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
 
-        public void UpdateAsync(TModel instance)
+        public async Task UpdateAsync(TModel instance)
         {
             Context.Set<TModel>().Attach(instance);
             Context.Entry(instance).State = System.Data.Entity.EntityState.Modified;
-            Context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
 
-        public void DeleteAsync(TModel instance)
+        public async Task DeleteAsync(TModel instance)
         {
             Context.Set<TModel>().Remove(instance);
-            Context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
 
-        public IList<TModel> FindAll()
+        public IQueryable<TModel> FindAll()
         {
-            return Context.Set<TModel>().ToList();
+            return Context.Set<TModel>();
         }
 
-        public IList<TModel> FindAllBy(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
+        public IQueryable<TModel> FindAllBy(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
         {
-            return Context.Set<TModel>().Where(where.Compile()).ToList();
+            return Context.Set<TModel>().Where(where.Compile()).AsQueryable();
         }
 
         public TModel FindOneBy(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
@@ -69,17 +69,17 @@ namespace Hans.Northwind.Core.Repositories
             return Context.Set<TModel>().FirstOrDefault(where.Compile());
         }
 
-        public Task<IList<TModel>> FindAllAsync()
+        public Task<IQueryable<TModel>> FindAllAsync()
         {
-            return Task.Run<IList<TModel>>(() =>
+            return Task.Run<IQueryable<TModel>>(() =>
             {
-                return Context.Set<TModel>().AsParallel().ToList();
+                return Context.Set<TModel>().AsParallel().AsQueryable();
             });
         }
 
-        public Task<IList<TModel>> FindAllByAsync(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
+        public Task<IQueryable<TModel>> FindAllByAsync(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
         {
-            return Task.Run<IList<TModel>>(() =>
+            return Task.Run<IQueryable<TModel>>(() =>
             {
                 return FindAllBy(where);
             });
