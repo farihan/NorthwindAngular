@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hans.Angular.Web", "Hans.Angular.Web\Hans.Angular.Web.csproj", "{BC91C783-BEF8-4F56-9CD3-90D6FE2EBAFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hans.Northwind.Core", "Hans.Northwind.Core\Hans.Northwind.Core.csproj", "{2FB8CA84-43D0-4A7D-B0E1-97F99ECDDB05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hans.Angular.Core", "Hans.Angular.Core\Hans.Angular.Core.csproj", "{27ADF2A0-2F4F-4086-92DC-396FD22EBC3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{BC91C783-BEF8-4F56-9CD3-90D6FE2EBAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC91C783-BEF8-4F56-9CD3-90D6FE2EBAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC91C783-BEF8-4F56-9CD3-90D6FE2EBAFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FB8CA84-43D0-4A7D-B0E1-97F99ECDDB05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FB8CA84-43D0-4A7D-B0E1-97F99ECDDB05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FB8CA84-43D0-4A7D-B0E1-97F99ECDDB05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FB8CA84-43D0-4A7D-B0E1-97F99ECDDB05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27ADF2A0-2F4F-4086-92DC-396FD22EBC3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27ADF2A0-2F4F-4086-92DC-396FD22EBC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27ADF2A0-2F4F-4086-92DC-396FD22EBC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27ADF2A0-2F4F-4086-92DC-396FD22EBC3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

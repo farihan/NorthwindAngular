@@ -258,9 +258,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hans.Northwind.Core\Hans.Northwind.Core.csproj">
-      <Project>{2fb8ca84-43d0-4a7d-b0e1-97f99ecddb05}</Project>
-      <Name>Hans.Northwind.Core</Name>
+    <ProjectReference Include="..\Hans.Angular.Core\Hans.Angular.Core.csproj">
+      <Project>{27adf2a0-2f4f-4086-92dc-396fd22ebc3a}</Project>
+      <Name>Hans.Angular.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

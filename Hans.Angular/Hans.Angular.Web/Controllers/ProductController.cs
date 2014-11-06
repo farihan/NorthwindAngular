@@ -1,5 +1,5 @@
-﻿using Hans.Northwind.Core.Models;
-using Hans.Northwind.Core.Repositories;
+﻿using Hans.Angular.Core.Models;
+using Hans.Angular.Core.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
