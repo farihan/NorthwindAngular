@@ -23,8 +23,15 @@ namespace Hans.Angular.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            //<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+            //<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
+            //<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular.js",
+                      "~/Scripts/ui-bootstrap-tpls-0.11.2.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

@@ -26,5 +26,9 @@ namespace Hans.Angular.Web.Controllers
 
             return View();
         }
+        public ActionResult Product()
+        {
+            return View("~/Views/Product/Index.cshtml");
+        }
     }
 }

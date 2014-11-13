@@ -30,31 +30,68 @@ namespace Hans.Angular.Web.Controllers
             {
                 ProductID = x.ProductID,
                 ProductName = x.ProductName,
-                SupplierID = x.SupplierID.HasValue ? x.SupplierID.Value : 0,
-                CategoryID = x.CategoryID.HasValue ? x.CategoryID.Value : 0,
+                SupplierID = x.SupplierID.HasValue ? x.SupplierID.Value : int.MinValue,
+                CategoryID = x.CategoryID.HasValue ? x.CategoryID.Value : int.MinValue,
                 QuantityPerUnit = x.QuantityPerUnit,
-                UnitPrice = x.UnitPrice.HasValue ? x.UnitPrice.Value : 0,
-                UnitsInStock = x.UnitsInStock.HasValue ? x.UnitsInStock.Value : 0,
-                UnitsOnOrder = x.UnitsOnOrder.HasValue ? x.UnitsOnOrder.Value : 0,
-                ReorderLevel = x.ReorderLevel.HasValue ? x.ReorderLevel.Value : 0,
+                UnitPrice = x.UnitPrice.HasValue ? x.UnitPrice.Value : decimal.MinValue,
+                UnitsInStock = x.UnitsInStock.HasValue ? x.UnitsInStock.Value : int.MinValue,
+                UnitsOnOrder = x.UnitsOnOrder.HasValue ? x.UnitsOnOrder.Value : int.MinValue,
+                ReorderLevel = x.ReorderLevel.HasValue ? x.ReorderLevel.Value : int.MinValue,
                 Discontinued = x.Discontinued
             });
         }
 
         // GET: api/Product
-        public IQueryable<ProductModel> GetAllBy(int page, int pageSize)
+        public IQueryable<ProductModel> GetAllBy(int page, int pageSize, string sortBy, bool isAsc)
         {
-            return ProductRepository.FindAll().Select(x => new ProductModel
+            page--;
+            var products = ProductRepository.FindAll().OrderBy(x => x.ProductID);
+
+            switch (sortBy.ToLower())
+            {
+                case "productid":
+                    products = isAsc ? products.OrderBy(p => p.ProductID) : products.OrderByDescending(p => p.ProductID);
+                    break;
+                case "productname":
+                    products = isAsc ? products.OrderBy(p => p.ProductName) : products.OrderByDescending(p => p.ProductName);
+                    break;
+                case "supplierid":
+                    products = isAsc ? products.OrderBy(p => p.SupplierID) : products.OrderByDescending(p => p.SupplierID);
+                    break;
+                case "categoryid":
+                    products = isAsc ? products.OrderBy(p => p.CategoryID) : products.OrderByDescending(p => p.CategoryID);
+                    break;
+                case "quantityperunit":
+                    products = isAsc ? products.OrderBy(p => p.QuantityPerUnit) : products.OrderByDescending(p => p.QuantityPerUnit);
+                    break;
+                case "unitprice":
+                    products = isAsc ? products.OrderBy(p => p.UnitPrice) : products.OrderByDescending(p => p.UnitPrice);
+                    break;
+                case "unitsinstock":
+                    products = isAsc ? products.OrderBy(p => p.UnitsInStock) : products.OrderByDescending(p => p.UnitsInStock);
+                    break;
+                case "unitsonorder":
+                    products = isAsc ? products.OrderBy(p => p.UnitsOnOrder) : products.OrderByDescending(p => p.UnitsOnOrder);
+                    break;
+                case "reorderlevel":
+                    products = isAsc ? products.OrderBy(p => p.ReorderLevel) : products.OrderByDescending(p => p.ReorderLevel);
+                    break;
+                case "discontinued":
+                    products = isAsc ? products.OrderBy(p => p.Discontinued) : products.OrderByDescending(p => p.Discontinued);
+                    break;
+            }
+
+            return products.Select(x => new ProductModel
             {
                 ProductID = x.ProductID,
                 ProductName = x.ProductName,
-                SupplierID = x.SupplierID.HasValue ? x.SupplierID.Value : 0,
-                CategoryID = x.CategoryID.HasValue ? x.CategoryID.Value : 0,
+                SupplierID = x.SupplierID.HasValue ? x.SupplierID.Value : int.MinValue,
+                CategoryID = x.CategoryID.HasValue ? x.CategoryID.Value : int.MinValue,
                 QuantityPerUnit = x.QuantityPerUnit,
-                UnitPrice = x.UnitPrice.HasValue ? x.UnitPrice.Value : 0,
-                UnitsInStock = x.UnitsInStock.HasValue ? x.UnitsInStock.Value : 0,
-                UnitsOnOrder = x.UnitsOnOrder.HasValue ? x.UnitsOnOrder.Value : 0,
-                ReorderLevel = x.ReorderLevel.HasValue ? x.ReorderLevel.Value : 0,
+                UnitPrice = x.UnitPrice.HasValue ? x.UnitPrice.Value : decimal.MinValue,
+                UnitsInStock = x.UnitsInStock.HasValue ? x.UnitsInStock.Value : int.MinValue,
+                UnitsOnOrder = x.UnitsOnOrder.HasValue ? x.UnitsOnOrder.Value : int.MinValue,
+                ReorderLevel = x.ReorderLevel.HasValue ? x.ReorderLevel.Value : int.MinValue,
                 Discontinued = x.Discontinued
             }).Skip(page * pageSize).Take(pageSize);
         }

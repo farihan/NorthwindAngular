@@ -1,12 +1,16 @@
 ﻿<!DOCTYPE html>
-<html>
+<html data-ng-app="Northwind">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Northwind Angular</title>
-    @Styles.Render("~/Content/css")
+    <meta name="description" content="The description of my Northwind Angular application" />
+    <!-- Bootstrap -->
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
-
+        @Scripts.Render("~/bundles/angular")
+        @Styles.Render("~/Content/css")
+    <script src="~/Scripts/App/productController.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,6 +28,12 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Product", "Product", "Home")</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -37,8 +47,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </body>
