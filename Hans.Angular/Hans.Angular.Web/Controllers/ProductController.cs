@@ -44,7 +44,6 @@ namespace Hans.Angular.Web.Controllers
         // GET: api/Product
         public IQueryable<ProductModel> GetAllBy(int page, int pageSize, string sortBy, bool isAsc)
         {
-            page--;
             var products = ProductRepository.FindAll().OrderBy(x => x.ProductID);
 
             switch (sortBy.ToLower())
@@ -93,7 +92,7 @@ namespace Hans.Angular.Web.Controllers
                 UnitsOnOrder = x.UnitsOnOrder.HasValue ? x.UnitsOnOrder.Value : int.MinValue,
                 ReorderLevel = x.ReorderLevel.HasValue ? x.ReorderLevel.Value : int.MinValue,
                 Discontinued = x.Discontinued
-            }).Skip(page * pageSize).Take(pageSize);
+            }).Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         // GET: api/Product/5
