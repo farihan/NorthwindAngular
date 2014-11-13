@@ -9,9 +9,15 @@ angular.module('Northwind').controller('ProductController', function ($scope, $h
         isAsc: true,
         totalItems: 0
     };
+
+    $scope.gridIndex = function (index) {
+        return (index + 1) + (($scope.pagingInfo.page - 1) * $scope.pagingInfo.pageSize);
+    };
+
     $scope.setPage = function (pageNo) {
         $scope.pagingInfo.page = pageNo;
     };
+
     $scope.pageChanged = function () {
         pageInit();
     };
