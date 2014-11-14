@@ -25,10 +25,7 @@ namespace Hans.Angular.Web
 
         protected void Application_BeginRequest()
         {
-            if (Request.IsLocal)
-            {
-                MiniProfiler.Start();
-            }
+            MiniProfiler.Start();
         }
 
         protected void Application_EndRequest()
