@@ -62,7 +62,7 @@ angular.module('Northwind').controller('ProductController', function ($scope, $h
 
     function loadProducts() {
         $scope.products = null;
-        $http.get('/api/product/getallby', {params: $scope.pagingInfo }).success(function (data) {
+        $http.get('/api/product/getallby', { params: $scope.pagingInfo }).success(function (data) {
             $scope.products = data;
         })
         .error(function () {
@@ -78,7 +78,7 @@ angular.module('Northwind').controller('ProductController', function ($scope, $h
     pageInit();
 });
 
-angular.module('Northwind').controller('ModalController', function ($scope, $modalInstance, selectedID) {
+angular.module('Northwind').controller('ModalController', function ($scope, $modalInstance, $http, selectedID) {
     $scope.selectedID = selectedID;
     $scope.ok = function () {
         $modalInstance.close();
@@ -87,4 +87,48 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
+    
+    function getAvailableSuppliers() {
+        $scope.availableSuppliers = [];
+        $http.get('/api/supplier/getall').success(function (data) {
+            $.each(data, function (index, item) {
+                $scope.availableSuppliers.push({ ID: item.SupplierID, Name: item.ContactName + ' (' + item.CompanyName + ')' });
+            });
+        })
+        .error(function () {
+            $scope.error = "Error has occured!";
+        });
+    }
+
+    function getAvailableCategories() {
+        $scope.availableCategories = [];
+        $http.get('/api/category/getall').success(function (data) {
+            $.each(data, function (index, item) {
+                $scope.availableCategories.push({ ID: item.CategoryID, Name: item.CategoryName });
+            });
+        })
+        .error(function () {
+            $scope.error = "Error has occured!";
+        });
+    }
+
+    function loadProduct() {
+        $scope.product = null;
+        $http.get('/api/product/get', { params: { id: $scope.selectedID } }).success(function (data) {
+            $scope.product = data;
+        })
+        .error(function () {
+            $scope.error = "Error has occured!";
+        });
+    }
+
+    function pageInit() {
+        getAvailableSuppliers();
+        getAvailableCategories();
+
+        if ($scope.selectedID != null)
+            loadProduct();
+    }
+
+    pageInit();
 });

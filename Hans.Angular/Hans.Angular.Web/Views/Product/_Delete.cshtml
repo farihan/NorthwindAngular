@@ -3,22 +3,21 @@
         <h3 class="modal-title">Delete this @ViewBag.Title?</h3>
     </div>
     <div class="modal-body">
-        <b>{{ selectedID }}</b>
         <div class="form-horizontal">
-            <div class="form-group" data-bind="validationElement: ProductName">
+            <div class="form-group">
                 <div class="col-md-3 control-label">
                     Product Name
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="ProductName" ng-model="ProductName" placeholder="" class="form-control input-sm" />
+                    <input type="text" name="ProductName" ng-model="product.ProductName" placeholder="" class="form-control input-sm" />
                 </div>
             </div>
-            <div class="form-group" data-bind="validationElement: QuantityPerUnit">
+            <div class="form-group">
                 <div class="col-md-3 control-label">
                     Quantity Per Unit
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="QuantityPerUnit" ng-model="QuantityPerUnit" placeholder="" class="form-control input-sm" />
+                    <input type="text" name="QuantityPerUnit" ng-model="product.QuantityPerUnit" placeholder="" class="form-control input-sm" />
                 </div>
             </div>
             <div class="form-group">
@@ -26,7 +25,7 @@
                     Unit Price
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="UnitPrice" ng-model="UnitPrice" placeholder="" class="form-control input-sm" />
+                    <input type="text" name="UnitPrice" ng-model="product.UnitPrice" placeholder="" class="form-control input-sm" />
                 </div>
             </div>
             <div class="form-group">
@@ -34,7 +33,7 @@
                     Units In Stock
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="UnitsInStock" ng-model="UnitsInStock" placeholder="" class="form-control input-sm" />
+                    <input type="text" name="UnitsInStock" ng-model="product.UnitsInStock" placeholder="" class="form-control input-sm" />
                 </div>
             </div>
             <div class="form-group">
@@ -42,7 +41,7 @@
                     Units On Order
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="UnitsOnOrder" ng-model="UnitsOnOrder" placeholder="" class="form-control input-sm" />
+                    <input type="text" name="UnitsOnOrder" ng-model="product.UnitsOnOrder" placeholder="" class="form-control input-sm" />
                 </div>
             </div>
             <div class="form-group">
@@ -50,7 +49,7 @@
                     Reorder Level
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="ReorderLevel" ng-model="ReorderLevel" placeholder="" class="form-control input-sm" />
+                    <input type="text" name="ReorderLevel" ng-model="product.ReorderLevel" placeholder="" class="form-control input-sm" />
                 </div>
             </div>
             <div class="form-group">
@@ -58,7 +57,7 @@
                     Discontinued
                 </div>
                 <div class="col-md-9">
-                    <input type="checkbox" ng-model="Discontinued" style="margin-top:9px">
+                    <input type="checkbox" ng-model="product.Discontinued" style="margin-top:9px">
                 </div>
             </div>
             <div class="form-group">
@@ -66,7 +65,9 @@
                     Supplier
                 </div>
                 <div class="col-md-9">
-                    <select class="form-control" ng-model="SupplierID" ng-options=""></select>
+                    <select class="form-control" ng-model="product.SupplierID" ng-options="item.ID as item.Name for item in availableSuppliers">
+                        <option value="">Select...</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -74,7 +75,9 @@
                     Category
                 </div>
                 <div class="col-md-9">
-                    <select class="form-control" ng-model="CategoryID" ng-options=""></select>
+                    <select class="form-control" ng-model="product.CategoryID" ng-options="item.ID as item.Name for item in availableCategories">
+                        <option value="">Select...</option>
+                    </select>
                 </div>
             </div>
         </div>

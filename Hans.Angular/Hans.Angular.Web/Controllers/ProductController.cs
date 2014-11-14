@@ -96,7 +96,7 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Product/5
-        [ResponseType(typeof(Product))]
+        [ResponseType(typeof(ProductModel))]
         public async Task<IHttpActionResult> Get(int id)
         {
             var product = await ProductRepository.FindOneByAsync(x => x.ProductID == id);
@@ -105,7 +105,21 @@ namespace Hans.Angular.Web.Controllers
                 return NotFound();
             }
 
-            return Ok(product);
+            var model = new ProductModel
+            {
+                ProductID = product.ProductID,
+                ProductName = product.ProductName,
+                SupplierID = product.SupplierID.HasValue ? product.SupplierID.Value : int.MinValue,
+                CategoryID = product.CategoryID.HasValue ? product.CategoryID.Value : int.MinValue,
+                QuantityPerUnit = product.QuantityPerUnit,
+                UnitPrice = product.UnitPrice.HasValue ? product.UnitPrice.Value : decimal.MinValue,
+                UnitsInStock = product.UnitsInStock.HasValue ? product.UnitsInStock.Value : int.MinValue,
+                UnitsOnOrder = product.UnitsOnOrder.HasValue ? product.UnitsOnOrder.Value : int.MinValue,
+                ReorderLevel = product.ReorderLevel.HasValue ? product.ReorderLevel.Value : int.MinValue,
+                Discontinued = product.Discontinued
+            };
+
+            return Ok(model);
         }
 
         // POST: api/Product
