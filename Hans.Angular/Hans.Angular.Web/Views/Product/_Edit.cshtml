@@ -1,12 +1,86 @@
 ﻿<script type="text/ng-template" id="editModal.html">
     <div class="modal-header">
-        <h3 class="modal-title">Edit</h3>
+        <h3 class="modal-title">Edit @ViewBag.Title</h3>
     </div>
     <div class="modal-body">
-        Selected: <b>{{ selectedID }}</b>
+        <b>{{ selectedID }}</b>
+        <div class="form-horizontal">
+            <div class="form-group" data-bind="validationElement: ProductName">
+                <div class="col-md-3 control-label">
+                    Product Name
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="ProductName" ng-model="ProductName" placeholder="" class="form-control input-sm" />
+                </div>
+            </div>
+            <div class="form-group" data-bind="validationElement: QuantityPerUnit">
+                <div class="col-md-3 control-label">
+                    Quantity Per Unit
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="QuantityPerUnit" ng-model="QuantityPerUnit" placeholder="" class="form-control input-sm" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 control-label">
+                    Unit Price
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="UnitPrice" ng-model="UnitPrice" placeholder="" class="form-control input-sm" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 control-label">
+                    Units In Stock
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="UnitsInStock" ng-model="UnitsInStock" placeholder="" class="form-control input-sm" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 control-label">
+                    Units On Order
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="UnitsOnOrder" ng-model="UnitsOnOrder" placeholder="" class="form-control input-sm" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 control-label">
+                    Reorder Level
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="ReorderLevel" ng-model="ReorderLevel" placeholder="" class="form-control input-sm" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 control-label">
+                    Discontinued
+                </div>
+                <div class="col-md-9">
+                    <input type="checkbox" ng-model="Discontinued" style="margin-top:9px">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 control-label">
+                    Supplier
+                </div>
+                <div class="col-md-9">
+                    <select class="form-control" ng-model="SupplierID" ng-options=""></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class=" col-md-3 control-label">
+                    Category
+                </div>
+                <div class="col-md-9">
+                    <select class="form-control" ng-model="CategoryID" ng-options=""></select>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-default btn-sm" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary btn-sm" ng-click="ok()">Update</button>
     </div>
 </script>
