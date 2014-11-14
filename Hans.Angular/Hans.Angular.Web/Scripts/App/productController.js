@@ -1,7 +1,7 @@
 'use strict';
 angular.module('Northwind', ['ui.bootstrap']);
 
-angular.module('Northwind').controller('ProductController', function ($scope, $http) {
+angular.module('Northwind').controller('ProductController', function ($scope, $http, $modal) {
     $scope.pagingInfo = {
         page: 1,
         pageSize: 10,
@@ -32,6 +32,25 @@ angular.module('Northwind').controller('ProductController', function ($scope, $h
         pageInit();
     };
 
+    $scope.openModal = function (id, html) {
+        var modalInstance = $modal.open({
+            templateUrl: html,
+            controller: 'ModalController',
+            size: '',
+            resolve: {
+                selectedID: function () {
+                    return id;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            //$log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
     function loadTotalItems() {
         $http.get('/api/product/getsize').success(function (data) {
             $scope.pagingInfo.totalItems = data;
@@ -57,4 +76,15 @@ angular.module('Northwind').controller('ProductController', function ($scope, $h
     }
 
     pageInit();
+});
+
+angular.module('Northwind').controller('ModalController', function ($scope, $modalInstance, selectedID) {
+    $scope.selectedID = selectedID;
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });
