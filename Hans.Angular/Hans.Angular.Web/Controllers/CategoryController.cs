@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Hans.Angular.Web.Controllers
@@ -15,15 +16,19 @@ namespace Hans.Angular.Web.Controllers
         private IRepository<Category> CategoryRepository = new Repository<Category>();
 
         // GET: api/Category
-        public int GetSize()
+        public async Task<int> GetSize()
         {
-            return CategoryRepository.FindAll().Count();
+            var categories = await CategoryRepository.FindAllAsync();
+
+            return categories.Count();
         }
 
         // GET: api/Category
-        public IQueryable<CategoryModel> GetAll()
+        public async Task<IQueryable<CategoryModel>> GetAll()
         {
-            return CategoryRepository.FindAll().Select(x => new CategoryModel
+            var categories = await CategoryRepository.FindAllAsync();
+
+            return categories.Select(x => new CategoryModel
             {
                 CategoryID = x.CategoryID,
                 CategoryName = x.CategoryName,

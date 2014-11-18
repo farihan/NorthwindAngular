@@ -18,15 +18,18 @@ namespace Hans.Angular.Web.Controllers
         private IRepository<Customer> CustomerRepository = new Repository<Customer>();
 
         // GET: api/Customer
-        public int GetSize()
+        public async Task<int> GetSize()
         {
-            return CustomerRepository.FindAll().Count();
+            var customers = await CustomerRepository.FindAllAsync();
+
+            return customers.Count();
         }
 
         // GET: api/Customer
-        public IQueryable<CustomerModel> GetAll()
+        public async Task<IQueryable<CustomerModel>> GetAll()
         {
-            return CustomerRepository.FindAll().Select(x => new CustomerModel
+            var customers = await CustomerRepository.FindAllAsync();
+            return customers.Select(x => new CustomerModel
             {
                 CustomerID = x.CustomerID,
                 CompanyName = x.CompanyName,
@@ -43,9 +46,9 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Customer
-        public IQueryable<CustomerModel> GetAllBy(int page, int pageSize, string sort = "customerid", bool asc = true)
+        public async Task<IQueryable<CustomerModel>> GetAllBy(int page, int pageSize, string sort = "customerid", bool asc = true)
         {
-            var customers = CustomerRepository.FindAll().OrderBy(x => x.CustomerID);
+            var customers = await CustomerRepository.FindAllAsync();
 
             switch (sort.ToLower())
             {
