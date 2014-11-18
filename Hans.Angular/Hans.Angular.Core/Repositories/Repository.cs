@@ -69,25 +69,25 @@ namespace Hans.Angular.Core.Repositories
             return Context.Set<TModel>().FirstOrDefault(where.Compile());
         }
 
-        public Task<IQueryable<TModel>> FindAllAsync()
+        public async Task<IQueryable<TModel>> FindAllAsync()
         {
-            return Task.Run<IQueryable<TModel>>(() =>
+            return await Task.Run<IQueryable<TModel>>(() =>
             {
-                return Context.Set<TModel>().AsParallel().AsQueryable();
+                return Context.Set<TModel>();
             });
         }
 
-        public Task<IQueryable<TModel>> FindAllByAsync(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
+        public async Task<IQueryable<TModel>> FindAllByAsync(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
         {
-            return Task.Run<IQueryable<TModel>>(() =>
+            return await Task.Run<IQueryable<TModel>>(() =>
             {
                 return FindAllBy(where);
             });
         }
 
-        public Task<TModel> FindOneByAsync(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
+        public async Task<TModel> FindOneByAsync(System.Linq.Expressions.Expression<Func<TModel, bool>> where)
         {
-            return Task.Run<TModel>(() =>
+            return await Task.Run<TModel>(() =>
             {
                 return FindOneBy(where);
             });

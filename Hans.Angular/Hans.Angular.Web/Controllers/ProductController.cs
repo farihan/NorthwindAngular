@@ -18,15 +18,19 @@ namespace Hans.Angular.Web.Controllers
         private IRepository<Product> ProductRepository = new Repository<Product>();
 
         // GET: api/Product
-        public int GetSize()
+        public async Task<int> GetSize()
         {
-            return ProductRepository.FindAll().Count();
+            var products = await ProductRepository.FindAllAsync();
+
+            return products.Count();
         }
 
         // GET: api/Product
-        public IQueryable<ProductModel> GetAll()
+        public async Task<IQueryable<ProductModel>> GetAll()
         {
-            return ProductRepository.FindAll().Select(x => new ProductModel
+            var products = await ProductRepository.FindAllAsync();
+            
+            return products.Select(x => new ProductModel
             {
                 ProductID = x.ProductID,
                 ProductName = x.ProductName,
@@ -42,9 +46,9 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Product
-        public IQueryable<ProductModel> GetAllBy(int page, int pageSize, string sortBy, bool isAsc)
+        public async Task<IQueryable<ProductModel>> GetAllBy(int page, int pageSize, string sortBy, bool isAsc)
         {
-            var products = ProductRepository.FindAll().OrderBy(x => x.ProductID);
+            var products = await ProductRepository.FindAllAsync();
 
             switch (sortBy.ToLower())
             {
