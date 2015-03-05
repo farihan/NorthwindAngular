@@ -199,7 +199,7 @@ namespace Hans.Angular.Web.Controllers
                     model.Discontinued = product.Discontinued;
                 }
 
-                await ProductRepository.UpdateAsync(product);
+                await ProductRepository.UpdateAsync(model);
             }
             catch (DbUpdateConcurrencyException)
             {
