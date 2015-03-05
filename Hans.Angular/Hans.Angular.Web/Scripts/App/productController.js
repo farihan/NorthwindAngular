@@ -100,16 +100,32 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
 
     $scope.create = function (product) {
         if ($scope.createForm.$valid) {
-            $http.post('/api/product/create', {
-                'ProductName' : product.ProductName,
-                'SupplierID' : product.SupplierID,
-                'CategoryID' : product.CategoryID,
-                'QuantityPerUnit' : product.QuantityPerUnit,
-                'UnitPrice' : product.UnitPrice,
-                'UnitsInStock' : product.UnitsInStock,
-                'UnitsOnOrder' : product.UnitsOnOrder,
-                'ReorderLevel' : product.ReorderLevel,
-                'Discontinued' : product.Discontinued
+            //$http.post('/api/product/create', {
+            //    'ProductName' : product.ProductName,
+            //    'SupplierID' : product.SupplierID,
+            //    'CategoryID' : product.CategoryID,
+            //    'QuantityPerUnit' : product.QuantityPerUnit,
+            //    'UnitPrice' : product.UnitPrice,
+            //    'UnitsInStock' : product.UnitsInStock,
+            //    'UnitsOnOrder' : product.UnitsOnOrder,
+            //    'ReorderLevel' : product.ReorderLevel,
+            //    'Discontinued' : product.Discontinued
+            //})
+            $http({
+                method: 'POST',
+                url: '/api/product/create',
+                data: {
+                    'ProductName': product.ProductName,
+                    'SupplierID': product.SupplierID,
+                    'CategoryID': product.CategoryID,
+                    'QuantityPerUnit': product.QuantityPerUnit,
+                    'UnitPrice': product.UnitPrice,
+                    'UnitsInStock': product.UnitsInStock,
+                    'UnitsOnOrder': product.UnitsOnOrder,
+                    'ReorderLevel': product.ReorderLevel,
+                    'Discontinued': product.Discontinued
+                },
+                headers: { 'Content-Type': 'application/json' }
             })
             .success(function (data, status, headers, config) {
                 closeAndRefreshRepeater();
@@ -124,23 +140,23 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
 
     $scope.update = function (product) {        
         if ($scope.editForm.$valid) {
-        $http({
-            method: 'PUT',
-            url: '/api/product/edit/' + product.ProductID ,
-            data: {
-                'ProductID': product.ProductID,
-                'ProductName': product.ProductName,
-                'SupplierID': product.SupplierID,
-                'CategoryID': product.CategoryID,
-                'QuantityPerUnit': product.QuantityPerUnit,
-                'UnitPrice': product.UnitPrice,
-                'UnitsInStock': product.UnitsInStock,
-                'UnitsOnOrder': product.UnitsOnOrder,
-                'ReorderLevel': product.ReorderLevel,
-                'Discontinued': product.Discontinued
-            },
-            headers: { 'Content-Type': 'application/json' }
-        })
+            $http({
+                method: 'PUT',
+                url: '/api/product/edit/' + product.ProductID ,
+                data: {
+                    'ProductID': product.ProductID,
+                    'ProductName': product.ProductName,
+                    'SupplierID': product.SupplierID,
+                    'CategoryID': product.CategoryID,
+                    'QuantityPerUnit': product.QuantityPerUnit,
+                    'UnitPrice': product.UnitPrice,
+                    'UnitsInStock': product.UnitsInStock,
+                    'UnitsOnOrder': product.UnitsOnOrder,
+                    'ReorderLevel': product.ReorderLevel,
+                    'Discontinued': product.Discontinued
+                },
+                headers: { 'Content-Type': 'application/json' }
+            })
             .success(function (data, status, headers, config) {
                 closeAndRefreshRepeater();
             })

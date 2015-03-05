@@ -133,7 +133,7 @@ namespace Hans.Angular.Web.Controllers
         // POST: api/Product
         [ResponseType(typeof(Product))]
         [System.Web.Http.HttpPost]
-        public async Task<IHttpActionResult> Create(Product product)
+        public async Task<IHttpActionResult> Create(ProductModel product)
         {
             if (!ModelState.IsValid)
             {
@@ -147,9 +147,9 @@ namespace Hans.Angular.Web.Controllers
                 CategoryID = product.CategoryID,
                 QuantityPerUnit = product.QuantityPerUnit,
                 UnitPrice = product.UnitPrice,
-                UnitsInStock = product.UnitsInStock,
-                UnitsOnOrder = product.UnitsOnOrder,
-                ReorderLevel = product.ReorderLevel,
+                UnitsInStock = 1,//product.UnitsInStock,
+                UnitsOnOrder = 1,//product.UnitsOnOrder,
+                ReorderLevel = 1,//product.ReorderLevel,
                 Discontinued = product.Discontinued
             };
 
