@@ -15,12 +15,14 @@ namespace Hans.Angular.Web.Controllers
         private IRepository<Supplier> SupplierRepository = new Repository<Supplier>();
 
         // GET: api/Supplier
+        [System.Web.Http.HttpGet]
         public int GetSize()
         {
             return SupplierRepository.FindAll().Count();
         }
 
         // GET: api/Supplier
+        [System.Web.Http.HttpGet]
         public IQueryable<SupplierModel> GetAll()
         {
             return SupplierRepository.FindAll().Select(x => new SupplierModel

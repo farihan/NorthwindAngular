@@ -18,6 +18,7 @@ namespace Hans.Angular.Web.Controllers
         private IRepository<Customer> CustomerRepository = new Repository<Customer>();
 
         // GET: api/Customer
+        [System.Web.Http.HttpGet]
         public async Task<int> GetSize()
         {
             var customers = await CustomerRepository.FindAllAsync();
@@ -26,6 +27,7 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Customer
+        [System.Web.Http.HttpGet]
         public async Task<IQueryable<CustomerModel>> GetAll()
         {
             var customers = await CustomerRepository.FindAllAsync();
@@ -46,6 +48,7 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Customer
+        [System.Web.Http.HttpGet]
         public async Task<IQueryable<CustomerModel>> GetAllBy(int page, int pageSize, string sort = "customerid", bool asc = true)
         {
             var customers = await CustomerRepository.FindAllAsync();
@@ -104,6 +107,7 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Customer/5
+        [System.Web.Http.HttpGet]
         [ResponseType(typeof(Customer))]
         public async Task<IHttpActionResult> Get(int id)
         {
@@ -118,6 +122,7 @@ namespace Hans.Angular.Web.Controllers
 
         // POST: api/Customer
         [ResponseType(typeof(Customer))]
+        [System.Web.Http.HttpPost]
         public async Task<IHttpActionResult> Create(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -146,6 +151,7 @@ namespace Hans.Angular.Web.Controllers
 
         // DELETE: api/Customer/5
         [ResponseType(typeof(Customer))]
+        [System.Web.Http.HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
             var customer = CustomerRepository.FindOneBy(x => x.CustomerID == id.ToString());
@@ -161,6 +167,7 @@ namespace Hans.Angular.Web.Controllers
 
         // PUT: api/Customer/5
         [ResponseType(typeof(void))]
+        [System.Web.Http.HttpPut]
         public async Task<IHttpActionResult> Edit(int id, Customer customer)
         {
             if (!ModelState.IsValid)

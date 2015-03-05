@@ -16,6 +16,7 @@ namespace Hans.Angular.Web.Controllers
         private IRepository<Category> CategoryRepository = new Repository<Category>();
 
         // GET: api/Category
+        [System.Web.Http.HttpGet]
         public async Task<int> GetSize()
         {
             var categories = await CategoryRepository.FindAllAsync();
@@ -24,6 +25,7 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Category
+        [System.Web.Http.HttpGet]
         public async Task<IQueryable<CategoryModel>> GetAll()
         {
             var categories = await CategoryRepository.FindAllAsync();

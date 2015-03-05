@@ -18,6 +18,7 @@ namespace Hans.Angular.Web.Controllers
         private IRepository<Product> ProductRepository = new Repository<Product>();
 
         // GET: api/Product
+        [System.Web.Http.HttpGet]
         public async Task<int> GetSize()
         {
             var products = await ProductRepository.FindAllAsync();
@@ -26,6 +27,7 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Product
+        [System.Web.Http.HttpGet]
         public async Task<IQueryable<ProductModel>> GetAll()
         {
             var products = await ProductRepository.FindAllAsync();
@@ -46,6 +48,7 @@ namespace Hans.Angular.Web.Controllers
         }
 
         // GET: api/Product
+        [System.Web.Http.HttpGet]
         public async Task<IQueryable<ProductModel>> GetAllBy(int page, int pageSize, string sortBy, bool isAsc)
         {
             var products = await ProductRepository.FindAllAsync();
@@ -101,6 +104,7 @@ namespace Hans.Angular.Web.Controllers
 
         // GET: api/Product/5
         [ResponseType(typeof(ProductModel))]
+        [System.Web.Http.HttpGet]
         public async Task<IHttpActionResult> Get(int id)
         {
             var product = await ProductRepository.FindOneByAsync(x => x.ProductID == id);
@@ -128,6 +132,7 @@ namespace Hans.Angular.Web.Controllers
 
         // POST: api/Product
         [ResponseType(typeof(Product))]
+        [System.Web.Http.HttpPost]
         public async Task<IHttpActionResult> Create(Product product)
         {
             if (!ModelState.IsValid)
@@ -155,6 +160,7 @@ namespace Hans.Angular.Web.Controllers
 
         // DELETE: api/Product/5
         [ResponseType(typeof(Product))]
+        [System.Web.Http.HttpDelete]
         public async Task<IHttpActionResult> Delete(int id)
         {
             var product = ProductRepository.FindOneBy(x => x.ProductID == id);
@@ -170,6 +176,7 @@ namespace Hans.Angular.Web.Controllers
 
         // PUT: api/Product/5
         [ResponseType(typeof(void))]
+        [System.Web.Http.HttpPut]
         public async Task<IHttpActionResult> Edit(int id, Product product)
         {
             if (!ModelState.IsValid)
