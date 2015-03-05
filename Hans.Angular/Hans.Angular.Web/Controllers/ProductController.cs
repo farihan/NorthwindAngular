@@ -133,7 +133,7 @@ namespace Hans.Angular.Web.Controllers
         // POST: api/Product
         [ResponseType(typeof(Product))]
         [System.Web.Http.HttpPost]
-        public async Task<IHttpActionResult> Create(Product product)
+        public IHttpActionResult Create(Product product)
         {
             if (!ModelState.IsValid)
             {
@@ -155,7 +155,7 @@ namespace Hans.Angular.Web.Controllers
                     Discontinued = product.Discontinued
                 };
 
-                await ProductRepository.SaveAsync(model);
+                ProductRepository.Save(model);
             }
             catch (Exception error)
             {
