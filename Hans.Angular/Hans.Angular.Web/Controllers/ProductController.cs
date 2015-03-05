@@ -157,9 +157,11 @@ namespace Hans.Angular.Web.Controllers
 
                 await ProductRepository.SaveAsync(model);
             }
-            catch (Exception)
+            catch (Exception error)
             {
-                throw;
+                HttpResponseMessage response =
+                    this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "your message: " + error.InnerException);
+                throw new HttpResponseException(response);
             }
 
             return CreatedAtRoute("DefaultApi", new { id = product.ProductID }, product);
