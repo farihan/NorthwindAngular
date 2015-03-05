@@ -157,7 +157,7 @@ namespace Hans.Angular.Web.Controllers
 
                 ProductRepository.Save(model);
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 throw;
             }
