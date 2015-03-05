@@ -9,7 +9,7 @@ namespace Hans.Angular.Core.Models.Mapping
         {
             // Primary Key
             this.HasKey(t => t.ProductID);
-            this.Property(t => t.ProductID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(t => t.ProductID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
 
             // Properties
             this.Property(t => t.ProductName)
