@@ -19,6 +19,7 @@ namespace Hans.Angular.Core.Repositories
         public void Save(TModel instance)
         {
             Context.Set<TModel>().Add(instance);
+            Context.Entry(instance).State = System.Data.Entity.EntityState.Added;
             Context.SaveChanges();
         }
 
@@ -38,6 +39,7 @@ namespace Hans.Angular.Core.Repositories
         public async Task SaveAsync(TModel instance)
         {
             Context.Set<TModel>().Add(instance);
+            Context.Entry(instance).State = System.Data.Entity.EntityState.Added;
             await Context.SaveChangesAsync();
         }
 
