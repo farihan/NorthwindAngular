@@ -133,27 +133,34 @@ namespace Hans.Angular.Web.Controllers
         // POST: api/Product
         [ResponseType(typeof(Product))]
         [System.Web.Http.HttpPost]
-        public async Task<IHttpActionResult> Create(ProductModel product)
+        public async Task<IHttpActionResult> Create(Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var model = new Product()
+            try
             {
-                ProductName = product.ProductName,
-                SupplierID = product.SupplierID,
-                CategoryID = product.CategoryID,
-                QuantityPerUnit = product.QuantityPerUnit,
-                UnitPrice = product.UnitPrice,
-                UnitsInStock = 1,//product.UnitsInStock,
-                UnitsOnOrder = 1,//product.UnitsOnOrder,
-                ReorderLevel = 1,//product.ReorderLevel,
-                Discontinued = product.Discontinued
-            };
+                var model = new Product()
+                {
+                    ProductName = product.ProductName,
+                    SupplierID = product.SupplierID,
+                    CategoryID = product.CategoryID,
+                    QuantityPerUnit = product.QuantityPerUnit,
+                    UnitPrice = product.UnitPrice,
+                    UnitsInStock = product.UnitsInStock,
+                    UnitsOnOrder = product.UnitsOnOrder,
+                    ReorderLevel = product.ReorderLevel,
+                    Discontinued = product.Discontinued
+                };
 
-            await ProductRepository.SaveAsync(model);
+                await ProductRepository.SaveAsync(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = product.ProductID }, product);
         }
