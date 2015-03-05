@@ -159,9 +159,7 @@ namespace Hans.Angular.Web.Controllers
             }
             catch (Exception error)
             {
-                HttpResponseMessage response =
-                    this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "your message: " + error.InnerException);
-                throw new HttpResponseException(response);
+                throw;
             }
 
             return CreatedAtRoute("DefaultApi", new { id = product.ProductID }, product);
