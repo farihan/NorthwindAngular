@@ -10,6 +10,4 @@ Angular directive for Bootstrap
 
 Demo: http://northwindangular.apphb.com/
 
-Todo:
-Notification
-Progress bar
+Todo: Notification, Progress bar
