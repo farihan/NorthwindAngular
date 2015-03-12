@@ -22,3 +22,20 @@ select,
 textarea {
     max-width: 280px;
 }
+/*
+ * override the default CSS as an example
+ */
+
+#loading-bar .bar {
+  background: #ff0000;
+}
+#loading-bar-spinner .spinner-icon {
+  border-top-color:  #ff0000;
+  border-left-color: #ff0000;
+}
+#loading-bar .peg {
+  -moz-box-shadow: #ff0000 1px 0 6px 1px;
+  -ms-box-shadow: #ff0000 1px 0 6px 1px;
+  -webkit-box-shadow: #ff0000 1px 0 6px 1px;
+  box-shadow: #ff0000 1px 0 6px 1px;
+}
