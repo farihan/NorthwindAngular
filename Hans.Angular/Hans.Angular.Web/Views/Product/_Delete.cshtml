@@ -83,7 +83,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-default btn-sm" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-default btn-sm" ng-click="cancel()" ng-disabled="isProcessing">Cancel</button>
         <button class="btn btn-danger btn-sm" ng-click="delete(product.ProductID)" ng-disabled="isProcessing">Delete</button>
     </div>
 </script>
