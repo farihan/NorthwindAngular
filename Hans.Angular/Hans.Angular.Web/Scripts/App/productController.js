@@ -102,6 +102,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
 
     $scope.create = function (product) {
         if ($scope.createForm.$valid) {
+            $scope.isProcessing = true;
             $http({
                 method: 'POST',
                 url: '/api/product/create',
@@ -119,6 +120,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
                 headers: { 'Content-Type': 'application/json' }
             })
             .success(function (data, status, headers, config) {
+                $scope.isProcessing = false;
                 toaster.pop('success', 'Create successful...');
                 closeAndRefreshRepeater();
             })
@@ -133,6 +135,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
 
     $scope.update = function (product) {
         if ($scope.editForm.$valid) {
+            $scope.isProcessing = true;
             $http({
                 method: 'PUT',
                 url: '/api/product/edit/' + product.ProductID,
@@ -153,7 +156,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
             .success(function (data, status, headers, config) {
                 toaster.pop('success', 'Update successful...');
                 closeAndRefreshRepeater();
-
+                $scope.isProcessing = false;
             })
             .error(function (data, status, headers, config) {
                 $scope.error = "Error has occured!";
@@ -165,12 +168,14 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
     };
 
     $scope.delete = function (id) {
+        $scope.isProcessing = true;
         $http.delete('/api/product/delete', {
             params: { 'id': id }
         })
         .success(function (data, status, headers, config) {
             toaster.pop('success', 'Delete successful...');
             closeAndRefreshRepeater();
+            $scope.isProcessing = false;
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";

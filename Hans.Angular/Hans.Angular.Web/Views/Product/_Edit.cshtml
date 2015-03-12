@@ -113,7 +113,7 @@
         </div>
         <div class="modal-footer">
             <input class="btn btn-default btn-sm" type="button" ng-click="cancel()" value="Cancel" />
-            <input class="btn btn-primary btn-sm" type="submit" ng-click="submitted=true" value="Update" />
+            <input class="btn btn-primary btn-sm" type="submit" ng-click="submitted=true" value="Update" ng-disabled="isProcessing" />
         </div>
     </form>
 </script>
