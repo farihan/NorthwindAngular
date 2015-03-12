@@ -27,11 +27,19 @@ namespace Hans.Angular.Web
             //<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
             //<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                      "~/Scripts/angular.js",
+                      "~/Scripts/angular.min.js",
+                      "~/Scripts/angular-animanate.min.js",
                       "~/Scripts/ui-bootstrap-tpls-0.11.2.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/toaster").Include(
+                        "~/Scripts/toaster.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/App/productController.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
+                      "~/Content/toaster.min.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

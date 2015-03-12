@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Northwind Angular</title>
     <meta name="description" content="The description of my Northwind Angular application" />
-    <!-- Bootstrap -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/angular")
+    <!-- Bootstrap -->    
     @Styles.Render("~/Content/css")
-    <script src="~/Scripts/App/productController.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -44,7 +42,21 @@
         <footer>
             <p>&copy; @DateTime.Now.Year - Northwind Angular</p>
         </footer>
-    </div>
+    </div>    
+    <!-- jquery -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-animate.min.js"></script>
+    <!-- angular boostrap ui -->
+    <script src="~/Scripts/ui-bootstrap-tpls-0.11.2.js"></script>
+    <!-- toaster -->
+    <script src="~/Scripts/toaster.min.js"></script>
+    <!-- app -->
+    <script src="~/Scripts/App/app.js"></script>
+    <script src="~/Scripts/App/productController.js"></script>
 
     @RenderSection("scripts", required: false)
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()

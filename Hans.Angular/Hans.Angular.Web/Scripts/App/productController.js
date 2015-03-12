@@ -1,7 +1,6 @@
 //'use strict';
-angular.module('Northwind', ['ui.bootstrap']);
 
-angular.module('Northwind').controller('ProductController', function ($scope, $http, $modal) {
+app.controller('ProductController', function ($scope, $http, $modal, toaster) {
     $scope.pagingInfo = {
         page: 1,
         pageSize: 10,
@@ -63,6 +62,7 @@ angular.module('Northwind').controller('ProductController', function ($scope, $h
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
     }
 
@@ -73,18 +73,20 @@ angular.module('Northwind').controller('ProductController', function ($scope, $h
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
-    }    
+    }
 
     function pageInit() {
         loadTotalItems();
         loadProducts();
+        toaster.pop('info', 'Load page ' + $scope.pagingInfo.page + ' and sort by ' + $scope.pagingInfo.sortBy);
     }
 
     pageInit();
 });
 
-angular.module('Northwind').controller('ModalController', function ($scope, $modalInstance, $http, selectedID, selectedPagingInfo) {
+angular.module('Northwind').controller('ModalController', function ($scope, $modalInstance, $http, selectedID, selectedPagingInfo, toaster) {
     $scope.selectedID = selectedID;
     $scope.selectedPagingInfo = selectedPagingInfo;
 
@@ -100,17 +102,6 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
 
     $scope.create = function (product) {
         if ($scope.createForm.$valid) {
-            //$http.post('/api/product/create', {
-            //    'ProductName' : product.ProductName,
-            //    'SupplierID' : product.SupplierID,
-            //    'CategoryID' : product.CategoryID,
-            //    'QuantityPerUnit' : product.QuantityPerUnit,
-            //    'UnitPrice' : product.UnitPrice,
-            //    'UnitsInStock' : product.UnitsInStock,
-            //    'UnitsOnOrder' : product.UnitsOnOrder,
-            //    'ReorderLevel' : product.ReorderLevel,
-            //    'Discontinued' : product.Discontinued
-            //})
             $http({
                 method: 'POST',
                 url: '/api/product/create',
@@ -128,21 +119,23 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
                 headers: { 'Content-Type': 'application/json' }
             })
             .success(function (data, status, headers, config) {
+                toaster.pop('success', 'Create successful...');
                 closeAndRefreshRepeater();
             })
-            .error(function(data, status, headers, config) {
+            .error(function (data, status, headers, config) {
                 $scope.error = "Error has occured!";
+                toaster.pop('error', $scope.error);
             });
         }
         else {
         }
     };
 
-    $scope.update = function (product) {        
+    $scope.update = function (product) {
         if ($scope.editForm.$valid) {
             $http({
                 method: 'PUT',
-                url: '/api/product/edit/' + product.ProductID ,
+                url: '/api/product/edit/' + product.ProductID,
                 data: {
                     'ProductID': product.ProductID,
                     'ProductName': product.ProductName,
@@ -158,10 +151,13 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
                 headers: { 'Content-Type': 'application/json' }
             })
             .success(function (data, status, headers, config) {
+                toaster.pop('success', 'Update successful...');
                 closeAndRefreshRepeater();
+
             })
             .error(function (data, status, headers, config) {
                 $scope.error = "Error has occured!";
+                toaster.pop('error', $scope.error);
             });
         }
         else {
@@ -173,10 +169,12 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
             params: { 'id': id }
         })
         .success(function (data, status, headers, config) {
+            toaster.pop('success', 'Delete successful...');
             closeAndRefreshRepeater();
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
     };
 
@@ -190,6 +188,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
         })
         .error(function () {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
     }
 
@@ -203,6 +202,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
     }
 
@@ -214,6 +214,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
     }
 
@@ -224,6 +225,7 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
     }
 
@@ -235,20 +237,24 @@ angular.module('Northwind').controller('ModalController', function ($scope, $mod
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
+            toaster.pop('error', $scope.error);
         });
     }
 
     function closeAndRefreshRepeater() {
+        toaster.pop('info', 'Unload modal...');
         loadTotalItems();
         loadProducts();
     }
 
     function pageInit() {
+        toaster.pop('info', 'Load modal...');
         getAvailableSuppliers();
         getAvailableCategories();
 
-        if ($scope.selectedID != null)
+        if ($scope.selectedID != '')
             loadProduct();
+
     }
 
     pageInit();
