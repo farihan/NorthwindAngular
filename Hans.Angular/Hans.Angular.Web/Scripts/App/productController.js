@@ -86,7 +86,7 @@ app.controller('ProductController', function ($scope, $http, $modal, toaster) {
     pageInit();
 });
 
-angular.module('Northwind').controller('ModalController', function ($scope, $modalInstance, $http, selectedID, selectedPagingInfo, toaster) {
+app.controller('ModalController', function ($scope, $modalInstance, $http, selectedID, selectedPagingInfo, toaster) {
     $scope.selectedID = selectedID;
     $scope.selectedPagingInfo = selectedPagingInfo;
 
