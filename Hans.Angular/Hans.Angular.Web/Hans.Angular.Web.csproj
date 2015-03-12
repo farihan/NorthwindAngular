@@ -195,6 +195,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\loading-bar.css" />
     <Content Include="Content\toaster.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -206,6 +207,7 @@
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\App\productController.js" />
+    <Content Include="Scripts\loading-bar.js" />
     <Content Include="Scripts\toaster.js" />
     <Content Include="Scripts\toaster.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.11.2.js" />

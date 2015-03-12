@@ -40,6 +40,7 @@ namespace Hans.Angular.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/toaster.min.css",
+                      "~/Content/loading-bar.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
