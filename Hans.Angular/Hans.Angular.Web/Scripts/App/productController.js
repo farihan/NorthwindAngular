@@ -35,6 +35,7 @@ app.controller('ProductController', function ($scope, $http, $modal, toaster) {
 
     $scope.openModal = function (id, html) {
         var modalInstance = $modal.open({
+            backdrop: 'static',
             templateUrl: html,
             controller: 'ModalController',
             size: '',
