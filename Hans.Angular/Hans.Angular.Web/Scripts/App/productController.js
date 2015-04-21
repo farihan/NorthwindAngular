@@ -80,7 +80,7 @@ app.controller('ProductController', function ($scope, $http, $modal, toaster) {
     function pageInit() {
         loadTotalItems();
         loadProducts();
-        toaster.pop('info', 'Load page ' + $scope.pagingInfo.page + ' and sort by ' + $scope.pagingInfo.sortBy);
+        //toaster.pop('info', 'Load page ' + $scope.pagingInfo.page + ' and sort by ' + $scope.pagingInfo.sortBy);
     }
 
     pageInit();
@@ -120,9 +120,9 @@ app.controller('ModalController', function ($scope, $modalInstance, $http, selec
                 headers: { 'Content-Type': 'application/json' }
             })
             .success(function (data, status, headers, config) {
+                closeAndRefreshRepeater();
                 $scope.isProcessing = false;
                 toaster.pop('success', 'Create successful...');
-                closeAndRefreshRepeater();
             })
             .error(function (data, status, headers, config) {
                 $scope.error = "Error has occured!";
@@ -154,9 +154,9 @@ app.controller('ModalController', function ($scope, $modalInstance, $http, selec
                 headers: { 'Content-Type': 'application/json' }
             })
             .success(function (data, status, headers, config) {
-                toaster.pop('success', 'Update successful...');
                 closeAndRefreshRepeater();
                 $scope.isProcessing = false;
+                toaster.pop('success', 'Update successful...');
             })
             .error(function (data, status, headers, config) {
                 $scope.error = "Error has occured!";
@@ -173,9 +173,9 @@ app.controller('ModalController', function ($scope, $modalInstance, $http, selec
             params: { 'id': id }
         })
         .success(function (data, status, headers, config) {
-            toaster.pop('success', 'Delete successful...');
             closeAndRefreshRepeater();
             $scope.isProcessing = false;
+            toaster.pop('success', 'Delete successful...');
         })
         .error(function (data, status, headers, config) {
             $scope.error = "Error has occured!";
@@ -247,13 +247,11 @@ app.controller('ModalController', function ($scope, $modalInstance, $http, selec
     }
 
     function closeAndRefreshRepeater() {
-        toaster.pop('info', 'Unload modal...');
         loadTotalItems();
         loadProducts();
     }
 
     function pageInit() {
-        toaster.pop('info', 'Load modal...');
         getAvailableSuppliers();
         getAvailableCategories();
 
